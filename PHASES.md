@@ -8,7 +8,10 @@ This document outlines the planned phases for the development of the Chrome exte
 - No advanced detection or user configuration.
 - Focus on verifying injection, visibility, and screenshot capability only.
 
-## Phase 2: TODO
+## Phase 2:
+- Allow users to customize the domain list: when visiting a non-default domain, users can click the extension menu to add the current site to the detection list.
+- The extension popup will have a dropdown with two options: "Add current site" and "Manage sites".
+- "Manage sites" lists all detected domains, allows manual addition, and supports deleting domains from the list.
 
 ## Phase 3: TODO
 

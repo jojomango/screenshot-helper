@@ -1,0 +1,7 @@
+body { font-family: Arial, sans-serif; min-width: 250px; }
+h3 { margin: 10px 0 8px 0; font-size: 16px; }
+#main-menu, #manage-section { margin: 10px; }
+#main-menu button { display: block; width: 100%; margin-bottom: 8px; }
+#domain-list { list-style: none; padding: 0; }
+#domain-list li { margin-bottom: 5px; }
+button { margin-left: 5px; }

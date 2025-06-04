@@ -1,6 +1,9 @@
 // content-script.js
 // Injects a <div class="test-screen"></div> before the main video player on supported domains
 
+// Log when content script is loaded
+console.log("[TestScreen] Content script loaded on", window.location.hostname);
+
 (function insertTestScreen() {
   // Helper: Try to robustly find the main video player element
   function findVideoPlayer() {
@@ -38,19 +41,74 @@
     );
   }
 
+  // Get current domain (without www)
+  function getCurrentDomain() {
+    return window.location.hostname.replace(/^www\./, "");
+  }
+
+  // Check if current domain matches any in the allowed list (including subdomains)
+  function isDomainAllowed(currentDomain, domains) {
+    return domains.some(
+      (domain) =>
+        currentDomain === domain || currentDomain.endsWith("." + domain)
+    );
+  }
+
+  function checkDomainAndInsert(domains) {
+    const currentDomain = getCurrentDomain();
+    if (isDomainAllowed(currentDomain, domains)) {
+      console.log("[TestScreen] Domain matched:", currentDomain);
+      tryInsert();
+      // Also run every 2 seconds for late-loading players
+      let intervalId = setInterval(() => {
+        const inserted = tryInsert();
+        if (inserted) {
+          clearInterval(intervalId);
+        }
+      }, 2000);
+    }
+  }
+
   function tryInsert() {
     const player = findVideoPlayer();
+    if (player) {
+      console.log("[TestScreen] Found video player:", player);
+    }
     if (player && !alreadyInserted(player)) {
       const testDiv = document.createElement("div");
       testDiv.className = "test-screen";
       player.parentNode.insertBefore(testDiv, player);
-      // Optionally, you can log for debugging:
-      // console.log('Inserted test-screen before video player');
+      console.log("[TestScreen] Inserted test-screen div before player");
+      return true;
     }
+    return false;
   }
 
-  // Run on DOMContentLoaded and periodically (in case player loads late)
-  document.addEventListener("DOMContentLoaded", tryInsert);
-  // Also run every 2 seconds for late-loading players
-  setInterval(tryInsert, 2000);
+  // Load domains via messaging (Manifest V3 compatible)
+  function loadDomains(cb) {
+    chrome.runtime.sendMessage({ type: "GET_DOMAINS" }, (response) => {
+      if (response && response.domains) {
+        console.log(
+          "[TestScreen] Loaded domains from storage:",
+          response.domains
+        );
+        cb(response.domains);
+      } else {
+        console.warn("[TestScreen] Failed to load domains from background");
+        cb(["kktv.me", "netflix.com"]);
+      }
+    });
+  }
+
+  // Run immediately in case DOMContentLoaded already fired
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("[TestScreen] DOM fully loaded");
+      loadDomains(checkDomainAndInsert);
+    });
+  } else {
+    console.log("[TestScreen] DOM already loaded");
+    loadDomains(checkDomainAndInsert);
+  }
 })();
+console.log("[MCP DEBUG]", window.location.hostname);
