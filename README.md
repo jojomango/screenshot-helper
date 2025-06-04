@@ -6,6 +6,8 @@
 
 在內建的 netflix 與 kktv 網域上，自動於主要影片播放器前插入 div 元件（class 為 screenshot-helper），方便使用者進行螢幕截圖。
 
+- 支援自定義 domain，所有站台（包含預設）都可在 popup 或 options 頁面編輯、刪除。
+
 ## 安裝方式
 
 ### 方式一：從 GitHub 下載安裝
