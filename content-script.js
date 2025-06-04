@@ -37,7 +37,7 @@ console.log("[TestScreen] Content script loaded on", window.location.hostname);
     return (
       player &&
       player.previousElementSibling &&
-      player.previousElementSibling.classList.contains("test-screen")
+      player.previousElementSibling.classList.contains("screenshot-helper")
     );
   }
 
@@ -71,16 +71,16 @@ console.log("[TestScreen] Content script loaded on", window.location.hostname);
 
   function tryInsert() {
     const player = findVideoPlayer();
-    if (player) {
-      console.log("[TestScreen] Found video player:", player);
-    }
     if (player && !alreadyInserted(player)) {
-      const testDiv = document.createElement("div");
-      testDiv.className = "test-screen";
-      player.parentNode.insertBefore(testDiv, player);
-      console.log("[TestScreen] Inserted test-screen div before player");
+      const helperDiv = document.createElement("div");
+      helperDiv.className = "screenshot-helper";
+      player.parentNode.insertBefore(helperDiv, player);
+      console.log(
+        "[screenshot-helper] Inserted screenshot-helper div before player"
+      );
       return true;
     }
+    // 只在成功插入時 log，否則不 log found video player
     return false;
   }
 

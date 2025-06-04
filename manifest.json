@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Video Player Test Screen Inserter",
+  "name": "Video Screenshot Helper",
   "version": "1.0.0",
   "description": "Automatically inserts a test-screen div before video players on kktv.me and netflix.com.",
   "permissions": [
@@ -40,7 +40,8 @@
       "16": "icon16.png",
       "48": "icon48.png",
       "128": "icon128.png"
-    }
+    },
+    "default_title": "Video Screenshot Helper"
   },
   "options_ui": {
     "page": "options.html",

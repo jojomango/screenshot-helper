@@ -1,10 +1,10 @@
-# Video Player Screenshot inserter
+# Video Screenshot Helper
 
-這是一個 Chrome 擴充功能，當你瀏覽 kktv.me 或 netflix.com（包含子網域）時，會自動在主要影片播放器前插入一個 `<div class="test-screen"></div>`，並啟用螢幕截圖功能。
+這是一個 Chrome 擴充功能，當你瀏覽 kktv.me 或 netflix.com（包含子網域）時，會自動在主要影片播放器前插入一個 `<div class="screenshot-helper"></div>`，並啟用螢幕截圖功能。
 
 ## 功能簡介
 
-在內建的 netflix 與 kktv 網域上，自動於主要影片播放器前插入 div 元件，方便使用者進行螢幕截圖。
+在內建的 netflix 與 kktv 網域上，自動於主要影片播放器前插入 div 元件（class 為 screenshot-helper），方便使用者進行螢幕截圖。
 
 ## 安裝方式
 

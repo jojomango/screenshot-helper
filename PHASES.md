@@ -1,4 +1,4 @@
-# Project Phases: Video Player Test Screen Inserter
+# Project Phases: Video Screenshot Helper
 
 This document outlines the planned phases for the development of the Chrome extension. Each phase builds on the previous, allowing for incremental progress and clear milestones.
 
