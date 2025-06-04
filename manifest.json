@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Video Player Test Screen Inserter",
+  "version": "1.0.0",
+  "description": "Automatically inserts a test-screen div before video players on kktv.me and netflix.com.",
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.kktv.me/*",
+    "*://*.netflix.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.kktv.me/*",
+        "*://*.netflix.com/*"
+      ],
+      "js": [
+        "content-script.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
