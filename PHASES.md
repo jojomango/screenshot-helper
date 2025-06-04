@@ -3,9 +3,10 @@
 This document outlines the planned phases for the development of the Chrome extension. Each phase builds on the previous, allowing for incremental progress and clear milestones.
 
 ## Phase 1: Basic Functionality
-- Show the `<div class="test-screen"></div>` on the target domains (`kktv.me` and `netflix.com`), before the main video player.
+- When the domain matches (`kktv.me` or `netflix.com`), display the `<div class="test-screen"></div>` before the main video player.
+- Enable screenshot functionality on the screen when the domain matches.
 - No advanced detection or user configuration.
-- Focus on verifying injection and visibility only.
+- Focus on verifying injection, visibility, and screenshot capability only.
 
 ## Phase 2: TODO
 
