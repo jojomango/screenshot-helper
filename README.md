@@ -1,4 +1,4 @@
-# Video Player Test Screen Inserter
+# Video Player Screenshot inserter
 
 這是一個 Chrome 擴充功能，當你瀏覽 kktv.me 或 netflix.com（包含子網域）時，會自動在主要影片播放器前插入一個 `<div class="test-screen"></div>`，並啟用螢幕截圖功能。
 
